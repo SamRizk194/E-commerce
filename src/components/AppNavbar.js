@@ -1,12 +1,15 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function AppNavbar() {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
         <Container>
           <Link to="/" className="navbar-brand">
             Cart App
@@ -18,7 +21,7 @@ function AppNavbar() {
                 Products
               </Link>
               <Link to="cart" className="navbar-brand">
-                Cart
+                Cart-{cart.length}
               </Link>
             </Nav>
           </Navbar.Collapse>
