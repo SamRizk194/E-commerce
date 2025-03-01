@@ -9,7 +9,7 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
+      <Navbar fixed="top" className="bg-body-tertiary">
         <Container>
           <Link to="/" className="navbar-brand">
             Cart App

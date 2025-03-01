@@ -15,8 +15,8 @@ function Products() {
     dispatch(fetchProducts());
   }, [dispatch]);
   return (
-    <Container>
-      <Row>
+    <Container className="py-5">
+      <Row className="py-5">
         {products.map((product) => {
           return (
             <Col key={product.id}>
