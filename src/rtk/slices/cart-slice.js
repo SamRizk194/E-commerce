@@ -7,8 +7,12 @@ export const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.push(action.payload);
     },
-    removeFromCart: (state, action) => {},
-    clear: (state, action) => {},
+    removeFromCart: (state, action) => {
+      return state.filter((product) => product.id !== action.payload.id);
+    },
+    clear: (state, action) => {
+      return [];
+    },
   },
 });
 export const { addToCart, removeFromCart, clear } = cartSlice.actions;

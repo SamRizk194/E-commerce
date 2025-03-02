@@ -1,10 +1,12 @@
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../rtk/slices/cart-slice";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   return (
     <Container>
       <h1 className="py-5">welcome to cart</h1>
@@ -20,13 +22,26 @@ function Cart() {
         </thead>
         <tbody>
           {cart.map((product) => (
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.title}</td>
               <td>
-                <Button variant="danger">Delete</Button>
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  style={{ width: "100px", height: "100px" }}
+                ></Image>
+              </td>
+              <td>{product.price}$</td>
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    dispatch(removeFromCart(product));
+                  }}
+                >
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}
