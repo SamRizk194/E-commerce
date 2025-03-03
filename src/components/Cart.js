@@ -2,7 +2,7 @@ import { Container, Image } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../rtk/slices/cart-slice";
+import { removeFromCart, clear } from "../rtk/slices/cart-slice";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -10,6 +10,15 @@ function Cart() {
   return (
     <Container>
       <h1 className="py-5">welcome to cart</h1>
+      <Button
+        className="mb-3"
+        variant="primary"
+        onClick={() => {
+          dispatch(clear());
+        }}
+      >
+        Clear Cart
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>
