@@ -7,11 +7,16 @@ import { removeFromCart, clear } from "../rtk/slices/cart-slice";
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const totalPrice = cart.reduce((acc, product) => {
+    acc += product.price;
+    return acc;
+  }, 0);
   return (
     <Container>
       <h1 className="py-5">welcome to cart</h1>
+      <h5 className="mb-5">Total Price : {totalPrice.toFixed(2)} $</h5>
       <Button
-        className="mb-3"
+        className="mb-5"
         variant="primary"
         onClick={() => {
           dispatch(clear());
@@ -41,7 +46,7 @@ function Cart() {
                   style={{ width: "100px", height: "100px" }}
                 ></Image>
               </td>
-              <td>{product.price}$</td>
+              <td>{product.price} $</td>
               <td>
                 <Button
                   variant="danger"
