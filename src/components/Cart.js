@@ -8,7 +8,7 @@ function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const totalPrice = cart.reduce((acc, product) => {
-    acc += product.price;
+    acc += product.price * product.quantity;
     return acc;
   }, 0);
   return (
@@ -31,6 +31,7 @@ function Cart() {
             <th>Title</th>
             <th>Image</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -47,6 +48,7 @@ function Cart() {
                 ></Image>
               </td>
               <td>{product.price} $</td>
+              <td>{product.quantity}</td>
               <td>
                 <Button
                   variant="danger"
